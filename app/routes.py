@@ -1,6 +1,7 @@
-from app import app
+from app import app, db 
 from flask import render_template, redirect, url_for, flash
 from app.forms import PhoneForm
+from app.models import User
 
 @app.route('/')
 def index():
@@ -17,6 +18,7 @@ def add_phone():
         address = form.address.data
         phone = form.phone_number.data
         print(first, last, address, phone)
+        new_user = User(first_name=first, last_name=last, address=address, phone_number=phone)
         flash(f"{first} {last} has been added to the phone book", "success")
         return redirect(url_for('index'))
     return render_template('add_phone.html', form=form)
