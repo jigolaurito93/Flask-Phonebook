@@ -13,4 +13,6 @@ app.config.from_object(Config)
 db = SQLAlchemy(app)
 
 # import all of the routes from the routes file into the current package 
-from app import routes
+from app import routes, models
+
+
